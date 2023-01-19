@@ -1,7 +1,7 @@
 import random
 
-def is_valid(str_number):
-    return str_number.isdigit() and len(str_number) > 0 and 1 <= int(str_number) <= 100
+def is_valid(str_number, upper):
+    return str_number.isdigit() and len(str_number) > 0 and 1 <= int(str_number) <= upper
 
 def guess(a, b):
     
@@ -14,8 +14,8 @@ def guess(a, b):
         print('Введите число: ', end = '')
         str_number = input()
 
-        if not is_valid(str_number):
-            print('А может быть все-таки введем целое число от 1 до 100?')
+        if not is_valid(str_number, b):
+            print(f'А может быть все-таки введем целое число от 1 до {b}?')
             continue
 
         number = int(str_number)
