@@ -1,29 +1,44 @@
 import random
 
-def is_valid(n):
-    return str_number.isdigit() and len(str_number) > 0 and 1 <= int(n) <= 100
+def is_valid(str_number):
+    return str_number.isdigit() and len(str_number) > 0 and 1 <= int(str_number) <= 100
 
-a, b = 1, 100
+def guess(a, b):
+    
+    hidden_number = random.randint(a, b)
+    print(f'Попробуйте угадать число от {a} до {b}')
+    counter = 0
 
-hidden_number = random.randint(a, b)
+    while True:
+        
+        print('Введите число: ', end = '')
+        str_number = input()
+
+        if not is_valid(str_number):
+            print('А может быть все-таки введем целое число от 1 до 100?')
+            continue
+
+        number = int(str_number)
+        counter += 1
+
+        if number < hidden_number:
+            print('Ваше число меньше загаданного, попробуйте еще разок: ')
+        elif number > hidden_number:
+            print('Ваше число больше загаданного, попробуйте еще разок')
+        else:
+            print(f'Вы угадали за {counter} попытки, поздравляем!')
+            print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
+            break
+
+a = 1
+
 print('Добро пожаловать в числовую угадайку!')
-print(f'Попробуйте угадать число от {a} до {b}')
+print('Введите максимальное число, которое мы загадаем для вас: ', end = '')
+b = int(input())
 
 while True:
-    print('Введите число: ', end = '')
-    
-    str_number = input()
-    if not is_valid(str_number):
-        print('А может быть все-таки введем целое число от 1 до 100?')
-        continue
-
-    number = int(str_number)
-
-    if number < hidden_number:
-        print('Ваше число меньше загаданного, попробуйте еще разок: ')
-    elif number > hidden_number:
-        print('Ваше число больше загаданного, попробуйте еще разок')
-    else:
-        print('Вы угадали, поздравляем!')
-        print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
+    guess(a, b)
+    print('Хотите сьиграть еще раз?. yes (y)', end = '')
+    if input() != 'y':
         break
+
